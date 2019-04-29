@@ -7,12 +7,14 @@
   (let [count (Integer. (read-line))
         primes (take count (filter prime? (iterate inc 2)))
         tabledata (for [x1 primes x2 primes] (* x1 x2))]
-      (doseq [x primes] (print "   " x))
+        (newline)
+        (print "  ")
+      (doseq [x primes] (print (format "%6d" x)))
       (newline)
       (keep-indexed
         (fn [index item] 
-          (print (nth primes index))
-          (doseq [y item] (print " " y " "))
+          (print (format "%2d" (nth primes index)))
+          (doseq [y item] (print (format "%6d" y )))
           (newline)) (partition count tabledata))))
 
 (primetable)
